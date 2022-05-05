@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Composition" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\Nlog.dll</HintPath>
+    </Reference>
+    <Reference Include="Thermo.Magellan.BL.Data">
+      <HintPath>C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\Thermo.Magellan.BL.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Thermo.Magellan.BL.Processing">
+      <HintPath>C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\Thermo.Magellan.BL.Processing.dll</HintPath>
+    </Reference>
+    <Reference Include="Thermo.Magellan.BL.Processing.Interfaces">
+      <HintPath>C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\Thermo.Magellan.BL.Processing.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Thermo.Magellan.BL.Reporting.Interfaces">
+      <HintPath>C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\Thermo.Magellan.BL.Reporting.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Thermo.Magellan.Core">
+      <HintPath>C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\Thermo.Magellan.core.dll</HintPath>
+    </Reference>
+    <Reference Include="Thermo.Magellan.EntityDataFramework">
+      <HintPath>C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\Thermo.Magellan.EntityDataFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Thermo.Magellan.FileIO">
+      <HintPath>C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\thermo.magellan.fileio.dll</HintPath>
+    </Reference>
+    <Reference Include="Thermo.Magellan.MassSpec">
+      <HintPath>C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\Thermo.Magellan.MassSpec.dll</HintPath>
+    </Reference>
+    <Reference Include="Thermo.Magellan.PeptideIdentificationNodes">
+      <HintPath>C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\Thermo.Magellan.PeptideIdentificationNodes.dll</HintPath>
+    </Reference>
+    <Reference Include="Thermo.Magellan.Proteomics">
+      <HintPath>C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\Thermo.Magellan.Proteomics.dll</HintPath>
+    </Reference>
+    <Reference Include="Thermo.Magellan.Utilities">
+      <HintPath>C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\Thermo.Magellan.Utilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+	<Target Name="DeployPD" AfterTargets="Pack">
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release" />
+		<Exec Command="&quot;C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\Thermo.Magellan.Server.exe&quot; -install" />
+		<!--<Exec Command="&quot;C:\Program Files\Thermo\Proteome Discoverer 2.5\System\Release\Thermo.Discoverer.exe&quot; -startServer -showServerWindow" />-->
+	</Target>
+
+</Project>
